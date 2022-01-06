@@ -13,6 +13,7 @@
     </head>
     <body>
         <h1>Welcome to the mobile web CCPA TCF 09092021</h1>
+        <!-- include amp analytics component -->
         <amp-analytics data-block-on-consent="_till_accepted" type="googleanalytics">
             <script type=application/json>
             {
@@ -20,6 +21,7 @@
             }
             </script>
         </amp-analytics>
+        <!-- include amp geo-targeting component -->
         <amp-geo layout="nodisplay">
             <script type="application/json">
                 {
@@ -30,6 +32,7 @@
                 }
             </script>
         </amp-geo>
+        <!-- main amp consent for gdpr & ccpa component -->
         <amp-consent id='consent' layout='nodisplay' type='SourcePoint'>       
             <script type="application/json">
                 {
