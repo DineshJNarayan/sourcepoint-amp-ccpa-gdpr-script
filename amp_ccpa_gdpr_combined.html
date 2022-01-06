@@ -8,20 +8,9 @@
         <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
         <!-- required for geo-targeting -->
         <script async custom-element="amp-geo" src="https://cdn.ampproject.org/v0/amp-geo-0.1.js"></script>
-        <!-- required to sync auth_id with publishers domain and Google.com domain -->
-        <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
     </head>
     <body>
         <h1>Welcome to the mobile web CCPA TCF 09092021</h1>
-        <!-- include amp analytics component -->
-        <amp-analytics data-block-on-consent="_till_accepted" type="googleanalytics">
-            <script type=application/json>
-            {
-              "linkers":{"authId":{"ids":{"_a":"CLIENT_ID(AMP-CONSENT)"},"enabled":true,"proxyOnly":false}},"cookies":{"enabled":true,"authId":{"value":"LINKER_PARAM(authId, _a)"}}
-            }
-            </script>
-        </amp-analytics>
-        <!-- include amp geo-targeting component -->
         <amp-geo layout="nodisplay">
             <script type="application/json">
                 {
@@ -32,11 +21,11 @@
                 }
             </script>
         </amp-geo>
-        <!-- main amp consent for gdpr & ccpa component -->
-        <amp-consent id='consent' layout='nodisplay' type='SourcePoint'>       
+        <amp-consent id='consent' layout='nodisplay' type='SourcePoint'>
             <script type="application/json">
                 {
                     "consentInstanceId": "Sourcepoint",
+                    "consentRequired": false,
                     "geoOverride": {
                         "ccpa": {
                             "consentRequired": "remote",
@@ -46,11 +35,11 @@
                             "uiConfig": {"overlay":true},
                             "clientConfig": {
                                 "accountId": 1732,
-                                "siteHref": "https://amp.newscriptdemo.com",
-                                "siteId": 19118,
+                                "siteHref": "https://amp.ccpademo.com",
+                                "siteId": 19244,
                                 "isCCPA": true,
                                 "stageCampaign": false,
-                                "privacyManagerId": "613a397d7bb7502c6f4548e5",
+                                "privacyManagerId": "548701",
                                 "getDnsMsgMms": true,
                                 "alwaysDisplayDns": false,
                                 "showNoticeUntilAction": true,
@@ -76,18 +65,18 @@
                                 "isTCFV2": true,
                                 "pmTab": "purposes",
                                 "stageCampaign": false,
-                                "targetingParams": {    "color": "redinactive"  }
+                                "targetingParams": {    "color": "red"  }
                             }
                         }
                     }
                 }
             </script>
         </amp-consent>
-        <!-- <div id="ccpa-consent-ui">
-            <button on="tap:consent.prompt(consent=SourcePoint)">Do Not Sell My Info</button>
-        </div> -->
+        <div id="ccpa-consent-ui">
+            <!-- <button on="tap:consent.prompt(consent=SourcePoint)">Do Not Sell My Info</button> -->
+        </div>
         <div id="eea-consent-ui">
-            <button on="tap:consent.prompt(consent=SourcePoint)">Privacy Settings</button>
+            <!-- <button on="tap:consent.prompt(consent=SourcePoint)">Privacy Settings</button> -->
         </div>
     </body>
 </html>
