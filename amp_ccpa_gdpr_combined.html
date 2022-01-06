@@ -8,9 +8,18 @@
         <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
         <!-- required for geo-targeting -->
         <script async custom-element="amp-geo" src="https://cdn.ampproject.org/v0/amp-geo-0.1.js"></script>
+        <!-- required to sync auth_id with publishers domain and Google.com domain -->
+        <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
     </head>
     <body>
         <h1>Welcome to the mobile web CCPA TCF 09092021</h1>
+        <amp-analytics data-block-on-consent="_till_accepted" type="googleanalytics">
+            <script type=application/json>
+            {
+              "linkers":{"authId":{"ids":{"_a":"CLIENT_ID(AMP-CONSENT)"},"enabled":true,"proxyOnly":false}},"cookies":{"enabled":true,"authId":{"value":"LINKER_PARAM(authId, _a)"}}
+            }
+            </script>
+        </amp-analytics>
         <amp-geo layout="nodisplay">
             <script type="application/json">
                 {
@@ -21,12 +30,10 @@
                 }
             </script>
         </amp-geo>
-        <amp-consent id='consent' layout='nodisplay' type='SourcePoint'>
-        
+        <amp-consent id='consent' layout='nodisplay' type='SourcePoint'>       
             <script type="application/json">
                 {
                     "consentInstanceId": "Sourcepoint",
-                    "consentRequired": false,
                     "geoOverride": {
                         "ccpa": {
                             "consentRequired": "remote",
@@ -72,7 +79,6 @@
                     }
                 }
             </script>
-
         </amp-consent>
         <!-- <div id="ccpa-consent-ui">
             <button on="tap:consent.prompt(consent=SourcePoint)">Do Not Sell My Info</button>
