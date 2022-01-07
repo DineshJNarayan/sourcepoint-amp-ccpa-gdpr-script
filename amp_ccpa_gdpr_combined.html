@@ -12,6 +12,31 @@
         <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
     </head>
     <body>
+
+        <script>
+            function createCORSRequest(method, url){
+                var xhr = new XMLHttpRequest();
+                if ("withCredentials" in xhr){
+                    xhr.open(method, url, true);
+                } else if (typeof XDomainRequest != "undefined"){
+                    xhr = new XDomainRequest();
+                    xhr.open(method, url);
+                } else {
+                    xhr = null;
+                }
+                return xhr;
+            }
+            
+            var request = createCORSRequest("get", "https://dineshjnarayan.github.io");
+            if (request){
+                request.onload = function(){
+                    //do something with request.responseText
+                    console.log("request response text value is " + request.responseText)
+                };
+                request.send();
+            }
+        </script>
+
         <h1>Welcome to the mobile web CCPA TCF 09092021</h1>
         <!-- include amp analytics component -->
         <amp-analytics data-block-on-consent="_till_accepted" type="googleanalytics">
